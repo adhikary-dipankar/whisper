@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     const token = this.authService.getToken();
     if (token) {
       const payload = JSON.parse(atob(token.split('.')[1]));
-      this.currentUser = payload['name'] || 'User';
+
     }
   }
 

@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<any> {
-        this.currentUserSubject.next( username || 'User');
+    this.currentUserSubject.next( username || 'User');
     return this.http.post(`${this.apiUrl}/login`, { username, passwordHash: password });
   }
 
