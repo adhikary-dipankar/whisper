@@ -1,0 +1,15 @@
+<div class="flex items-center justify-center h-screen bg-gray-100">
+  <div class="bg-white p-6 rounded shadow-md w-96">
+    <h2 class="text-2xl mb-4">{{ isRegister ? 'Register' : 'Login' }}</h2>
+    <div class="mb-4">
+      <input type="text" [(ngModel)]="username" placeholder="Username" class="w-full p-2 border rounded">
+    </div>
+    <div class="mb-4">
+      <input type="password" [(ngModel)]="password" placeholder="Password" class="w-full p-2 border rounded">
+    </div>
+    <button (click)="submit()" class="w-full bg-blue-500 text-white p-2 rounded">{{ isRegister ? 'Register' : 'Login' }}</button>
+    <p class="mt-4 text-center">
+      <a (click)="toggleMode()" class="text-blue-500 cursor-pointer">{{ isRegister ? 'Already have an account? Login' : 'No account? Register' }}</a>
+    </p>
+  </div>
+</div>

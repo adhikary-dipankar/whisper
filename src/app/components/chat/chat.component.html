@@ -1,0 +1,26 @@
+<div class="flex h-screen bg-gray-100">
+  <div class="w-1/4 bg-white border-r">
+    <h2 class="p-4 text-xl">Conversations</h2>
+    <input type="text" [(ngModel)]="otherUserId" placeholder="Enter User ID" class="w-full p-2 border">
+    <button (click)="createConversation()" class="w-full bg-blue-500 text-white p-2">Start Chat</button>
+    <ul>
+      <li *ngFor="let conv of conversations" (click)="selectConversation(conv)" class="p-2 cursor-pointer hover:bg-gray-200">
+        {{ conv.displayName }}
+      </li>
+    </ul>
+  </div>
+  <div class="w-3/4 p-4">
+    <div *ngIf="selectedConversation" class="h-full flex flex-col">
+      <h2 class="text-xl mb-4">Chat with {{ selectedConversation.displayName }}</h2>
+      <div class="flex-1 overflow-y-auto">
+        <div *ngFor="let msg of messages" class="mb-2">
+          <strong>{{ msg.senderId }}:</strong> {{ msg.content }}
+        </div>
+      </div>
+      <div class="flex">
+        <input type="text" [(ngModel)]="newMessage" placeholder="Type a message" class="w-full p-2 border">
+        <button (click)="sendMessage()" class="bg-blue-500 text-white p-2">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
