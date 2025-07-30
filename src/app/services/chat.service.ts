@@ -17,8 +17,8 @@ export class ChatService {
       .withUrl(environment.signalRUrl, { accessTokenFactory: () => localStorage.getItem('token') || '' })
       .build();
 
-    this.hubConnection.on('ReceiveMessage', (senderId: string, content: string) => {
-      this.messageSubject.next({ senderId, content });
+    this.hubConnection.on('ReceiveMessage', (senderId: string, senderName: string, content: string) => {
+      this.messageSubject.next({ senderId, senderName, content });
     });
 
     this.hubConnection.start().catch(err => console.error(err));

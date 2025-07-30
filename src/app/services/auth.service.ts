@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { environment } from '../../environments/environment';
 })
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/api/auth`;
+  private currentUserSubject = new Subject<string>();
 
   constructor(private http: HttpClient) { }
 
@@ -16,11 +17,13 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<any> {
+        this.currentUserSubject.next( username || 'User');
     return this.http.post(`${this.apiUrl}/login`, { username, passwordHash: password });
   }
 
   saveToken(token: string): void {
     localStorage.setItem('token', token);
+    const payload = JSON.parse(atob(token.split('.')[1]));
   }
 
   getToken(): string | null {
@@ -29,5 +32,14 @@ export class AuthService {
 
   isLoggedIn(): boolean {
     return !!this.getToken();
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.currentUserSubject.next('');
+  }
+
+  getCurrentUser(): Observable<string> {
+    return this.currentUserSubject.asObservable();
   }
 }

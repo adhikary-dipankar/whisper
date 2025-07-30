@@ -1,0 +1,7 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900">
+  <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md text-center transform transition-all duration-300 hover:shadow-xl">
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Are you sure you want to log out?</h2>
+    <button (click)="confirmLogout()" class="bg-red-500 text-white p-3 rounded-lg hover:bg-red-600 transition duration-200">Log Out</button>
+    <a [routerLink]="['/chat']" class="block mt-4 text-blue-600 dark:text-blue-400 hover:underline">Back to Chat</a>
+  </div>
+</div>

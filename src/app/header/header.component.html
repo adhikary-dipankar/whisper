@@ -1,0 +1,11 @@
+<header class="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md sticky top-0 z-30">
+  <h1 class="text-xl font-bold">ChatApp</h1>
+  <div *ngIf="isLoggedIn()" class="flex items-center space-x-4">
+    <span class="text-sm truncate hidden sm:block">Welcome, {{ currentUser }}</span>
+    <div class="w-8 h-8 rounded-full bg-white text-blue-600 flex items-center justify-center font-medium">
+      {{ currentUser.charAt(0).toUpperCase() }}
+    </div>
+    <button (click)="toggleTheme()" class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-3 py-2 rounded-md transition duration-200" [attr.aria-label]="'Toggle theme'">Toggle Theme</button>
+    <button (click)="logout()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-md transition duration-200" [attr.aria-label]="'Logout'">Logout</button>
+  </div>
+</header>
